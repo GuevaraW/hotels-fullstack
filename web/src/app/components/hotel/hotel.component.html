@@ -1,0 +1,29 @@
+<div class="hotel">
+  <div class="hotel__img-container">
+    <img class="hotel__img" src={{hotel.images[0]}} alt="" srcset="">
+  </div>
+  <div class="hotel__info">
+    <h2 class="hotel__name">{{hotel.name}}</h2>
+    <h5 class="hotel__city">{{hotel.city}} </h5>
+    <h6 class="hotel__country">{{hotel.country | slice:0:3}}</h6>
+    <p class="hotel__description">{{hotel.description}}</p>
+
+    <div class="hotel__love">
+      <ngb-rating [(rate)]="hotel.rating" [readonly]="true" [max]="5">
+        <ng-template let-fill="fill">
+          <span class="heart" [class.full]="fill === 100">
+            <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+          </span>
+        </ng-template>
+      </ngb-rating>
+    </div>
+
+    <div class="hotel__stars">
+      <ngb-rating [(rate)]="hotel.stars" [max]="5" [readonly]=true>
+        <ng-template let-fill="fill" let-index="index">
+          <span class="star" [class.filled]="fill === 100">&#9733;</span>
+        </ng-template>
+      </ngb-rating>
+    </div>
+  </div>
+</div>
