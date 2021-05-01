@@ -1,1 +1,37 @@
-<p>hotel-details works!</p>
+<div class="hotel-details" *ngIf="hotel">
+  <div class="details__img-container">
+    <ngb-carousel *ngIf="hotel.images.length">
+      <ng-template ngbSlide *ngFor="let image of hotel.images">
+        <div class="picsum-img-wrapper">
+          <img [src]="image" alt="{{hotel.name}}">
+        </div>
+        <div class="carousel-caption">
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+  <div class="details__info">
+    <h1 class="details__name">{{hotel.name}}</h1>
+    <h5 class="details__city">{{hotel.city}}, {{hotel.country}} </h5>
+    <h6 class="details__country">{{hotel.price | currency}}</h6>
+
+    <div class="details__love">
+      <ngb-rating [(rate)]="hotel.rating" [readonly]="true" [max]="5">
+        <ng-template let-fill="fill">
+          <span class="heart" [class.full]="fill === 100">
+            <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+          </span>
+        </ng-template>
+      </ngb-rating>
+    </div>
+
+    <div class="details__stars">
+      <ngb-rating [(rate)]="hotel.stars" [max]="5" [readonly]=true>
+        <ng-template let-fill="fill" let-index="index">
+          <span class="star" [class.filled]="fill === 100">&#9733;</span>
+        </ng-template>
+      </ngb-rating>
+    </div>
+  </div>
+  <p class="details__description">{{hotel.description}}</p>
+</div>
