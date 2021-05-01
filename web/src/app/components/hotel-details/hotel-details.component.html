@@ -3,12 +3,13 @@
     <ngb-carousel *ngIf="hotel.images.length">
       <ng-template ngbSlide *ngFor="let image of hotel.images">
         <div class="picsum-img-wrapper">
-          <img [src]="image" alt="{{hotel.name}}">
+          <img class="details__img" [src]="image" alt="{{hotel.name}}">
         </div>
         <div class="carousel-caption">
         </div>
       </ng-template>
     </ngb-carousel>
+
   </div>
   <div class="details__info">
     <h1 class="details__name">{{hotel.name}}</h1>
@@ -16,6 +17,7 @@
     <h6 class="details__country">{{hotel.price | currency}}</h6>
 
     <div class="details__love">
+      Reviews:
       <ngb-rating [(rate)]="hotel.rating" [readonly]="true" [max]="5">
         <ng-template let-fill="fill">
           <span class="heart" [class.full]="fill === 100">
@@ -26,12 +28,17 @@
     </div>
 
     <div class="details__stars">
+      Stars:
       <ngb-rating [(rate)]="hotel.stars" [max]="5" [readonly]=true>
         <ng-template let-fill="fill" let-index="index">
           <span class="star" [class.filled]="fill === 100">&#9733;</span>
         </ng-template>
       </ngb-rating>
     </div>
+    <p class="details__description">{{hotel.description}} Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea aspernatur,
+      voluptatem eveniet enim error cupiditate veniam ipsum saepe laborum, a modi natus omnis, aliquid suscipit. Suscipit
+      architecto ut unde sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate labore eveniet explicabo? Ipsum,
+      error? Temporibus, magnam. Consectetur dolorem voluptatem enim aspernatur, deleniti nobis nisi voluptate, ullam porro
+      tempora quibusdam voluptatibus?</p>
   </div>
-  <p class="details__description">{{hotel.description}}</p>
 </div>
