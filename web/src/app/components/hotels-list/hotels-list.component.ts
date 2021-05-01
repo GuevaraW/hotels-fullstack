@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ListHotels } from 'src/app/models/Hotel';
 import { HotelService } from '../../services/hotel.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { HotelService } from '../../services/hotel.service';
   styleUrls: ['./hotels-list.component.scss'],
 })
 export class HotelsListComponent implements OnInit {
-  hotels: any;
+  hotels: ListHotels = [];
 
   constructor(public hotelService: HotelService) {}
 

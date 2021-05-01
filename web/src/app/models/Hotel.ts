@@ -4,10 +4,10 @@ export interface Hotel {
   country: string;
   city: string;
   price: number;
-  images: Array<string>;
+  images: string[];
   stars: number;
   rating: number;
   description: string;
 }
 
-export type ListHotels = Array<Hotel>;
+export type ListHotels = Hotel[];
