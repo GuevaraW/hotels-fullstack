@@ -1,11 +1,11 @@
-<div class="hotel">
+<div class="hotel" routerLink="/hotel/{{hotel.id}}">
   <div class="hotel__img-container">
     <img class="hotel__img" src={{hotel.images[0]}} alt="" srcset="">
   </div>
   <div class="hotel__info">
     <h2 class="hotel__name">{{hotel.name}}</h2>
-    <h5 class="hotel__city">{{hotel.city}} </h5>
-    <h6 class="hotel__country">{{hotel.country | slice:0:3}}</h6>
+    <h5 class="hotel__city">{{hotel.city}}, {{hotel.country}} </h5>
+    <h6 class="hotel__country">{{hotel.price | currency}}</h6>
     <p class="hotel__description">{{hotel.description}}</p>
 
     <div class="hotel__love">
