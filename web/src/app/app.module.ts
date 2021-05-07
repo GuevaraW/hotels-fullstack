@@ -9,6 +9,7 @@ import { HotelComponent } from './components/hotel/hotel.component';
 import { HotelDetailsComponent } from './components/hotel-details/hotel-details.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { FiltersComponent } from './components/filters/filters.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     HotelComponent,
     HotelDetailsComponent,
     NotFoundComponent,
+    FiltersComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, NgbModule, HttpClientModule],
   exports: [],
