@@ -3,6 +3,12 @@
 /* Importing Bootstrap SCSS file. */
 @import "~bootstrap/scss/bootstrap";
 
+@media (min-width: 768px) {
+  .navbar-expand-md .navbar-collapse {
+    display: block !important;
+  }
+}
+
 body {
   background-color: #171717;
   color: #eee;
