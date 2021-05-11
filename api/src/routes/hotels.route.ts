@@ -35,6 +35,7 @@ route
 			next(error);
 		}
 	})
+	.get('/name/', (req: Request, res: Response, next: NextFunction) => JSON.parse(readJson(jsonPath)))
 	.get('/name/:name', (req: Request, res: Response, next: NextFunction) => {
 		const { name } = req.params;
 		const logger: Logger = Container.get('logger');
@@ -50,6 +51,7 @@ route
 			next(error);
 		}
 	})
+	.get('/city/', (req: Request, res: Response, next: NextFunction) => JSON.parse(readJson(jsonPath)))
 	.get('/city/:city', (req: Request, res: Response, next: NextFunction) => {
 		const { city } = req.params;
 		const logger: Logger = Container.get('logger');
@@ -65,6 +67,7 @@ route
 			next(error);
 		}
 	})
+	.get('/country/', (req: Request, res: Response, next: NextFunction) => JSON.parse(readJson(jsonPath)))
 	.get('/country/:country', (req: Request, res: Response, next: NextFunction) => {
 		const { country } = req.params;
 		const logger: Logger = Container.get('logger');
@@ -89,6 +92,36 @@ route
 			const buffer: ListHotels = JSON.parse(readJson(jsonPath));
 			const hotelServices = Container.get(HotelService);
 			const filtered = hotelServices.filterBy('stars', stars, buffer);
+
+			res.json(filtered).status(200);
+		} catch (error) {
+			next(error);
+		}
+	})
+	.get('/rating/:rating', (req: Request, res: Response, next: NextFunction) => {
+		const { rating } = req.params;
+		const logger: Logger = Container.get('logger');
+		logger.debug(`Calling GET to /hotels/:${rating} endpoint`);
+
+		try {
+			const buffer: ListHotels = JSON.parse(readJson(jsonPath));
+			const hotelServices = Container.get(HotelService);
+			const filtered = hotelServices.filterBy('rating', rating, buffer);
+
+			res.json(filtered).status(200);
+		} catch (error) {
+			next(error);
+		}
+	})
+	.get('/price/', (req: Request, res: Response, next: NextFunction) => {
+		const { min, max } = req.query;
+		const logger: Logger = Container.get('logger');
+		logger.debug(`Calling GET to /hotels/price?min=${min}&max=${max} endpoint`);
+
+		try {
+			const buffer: ListHotels = JSON.parse(readJson(jsonPath));
+			const hotelServices = Container.get(HotelService);
+			const filtered = hotelServices.filterByRange('price', min, max, buffer);
 
 			res.json(filtered).status(200);
 		} catch (error) {

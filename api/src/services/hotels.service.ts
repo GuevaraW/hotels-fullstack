@@ -17,8 +17,25 @@ export default class HotelService {
 			}
 		});
 
+		if (filtered.length) {
+			return filtered;
+		}
+		return [];
+		// throw new ErrorHandler(404, 'Not Found');
+	}
+
+	filterByRange(key: string, min: any, max: any, repo: ListHotels): ListHotels {
+		const filtered = repo.filter((hotel: Hotel) => {
+			let field = parseInt(hotel[key]);
+			if (!min && max) return field <= parseInt(max);
+			if (min && !max) return field >= parseInt(min);
+			if (min && max) return field >= parseInt(min) && field <= parseInt(max);
+			return true;
+		});
+
 		if (filtered.length) return filtered;
-		throw new ErrorHandler(404, 'Not Found');
+		return [];
+		// throw new ErrorHandler(404, 'Not Found');
 	}
 
 	private findString(string: string, searchString: string): boolean {
