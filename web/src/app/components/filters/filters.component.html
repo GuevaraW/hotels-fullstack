@@ -7,16 +7,17 @@
     <h5 style="margin-left: 1rem;">Filtros</h5>
     <div class="filters-container">
       <form class="filter__cat filter--search">
-        <input class="input--search" type="search" name="search-hotel" id="search-hotel"
-          placeholder="Buscar hotel, ciudad o país">
+        <input class="input--search" type="search" name="search-hotel" id="search-hotel" placeholder="Buscar hotel, ciudad o país"
+          [ngModel]="search" (ngModelChange)="searchFilter($event)">
       </form>
       <form class="filter__cat filter--price">
-        <input class="input--price" type="text" name="price-min" id="min" placeholder="$ Min">
-        <input class="input--price" type="text" name="price-max" id="max" placeholder="$ Max">
-        <!-- <input type="button" value="Aplicar"> -->
+        <input class="input--price" type="text" name="price-min" id="min" placeholder="$ Min" #minPrice>
+        -
+        <input class="input--price" type="text" name="price-max" id="max" placeholder="$ Max" #maxPrice>
+        <input type="button" id="apply-price" value="Ir" (click)="priceFilter(minPrice.value, maxPrice.value)">
       </form>
       <form class="filter__cat filter--rating">
-        <ngb-rating [(rate)]="rate" [max]="5">
+        <ngb-rating [(rate)]="rate" (rateChange)="rateFilter($event)" [max]="5">
           <ng-template let-fill="fill">
             <span class="heart" [class.full]="fill === 100">
               <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
@@ -26,7 +27,7 @@
         <span> o más</span>
       </form>
       <form class="filter__cat filter--stars">
-        <ngb-rating [(rate)]="rate" [max]="5">
+        <ngb-rating [(rate)]="stars" (rateChange)="starsFilter($event)" [max]="5">
           <ng-template let-fill="fill">
             <span class="star" [class.filled]="fill === 100">&#9733;</span>
           </ng-template>
