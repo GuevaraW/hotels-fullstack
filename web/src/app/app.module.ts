@@ -10,6 +10,7 @@ import { HotelDetailsComponent } from './components/hotel-details/hotel-details.
 import { AppRoutingModule } from './app-routing.module';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FiltersComponent } from './components/filters/filters.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,13 @@ import { FiltersComponent } from './components/filters/filters.component';
     NotFoundComponent,
     FiltersComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, NgbModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgbModule,
+    HttpClientModule,
+    FormsModule,
+  ],
   exports: [],
   providers: [],
   bootstrap: [AppComponent],
