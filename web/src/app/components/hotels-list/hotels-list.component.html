@@ -1,4 +1,4 @@
-<app-filters></app-filters>
+<app-filters (onFilter)="hotelSubject.next($event)"></app-filters>
 <div class="hotels__grid">
   <div class="hotel__container" *ngFor="let hotel of hotels">
     <app-hotel [hotel]="hotel"></app-hotel>

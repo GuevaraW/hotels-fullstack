@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 import { ListHotels } from 'src/app/models/Hotel';
 import { HotelService } from '../../services/hotel.service';
 
@@ -9,14 +10,13 @@ import { HotelService } from '../../services/hotel.service';
 })
 export class HotelsListComponent implements OnInit {
   hotels: ListHotels = [];
+  hotelSubject = new Subject<any>();
 
   constructor(public hotelService: HotelService) {}
 
   ngOnInit(): void {
-    this.hotelService
-      .getHotels('http://localhost:3000/api/hotels')
-      .subscribe((data) => {
-        this.hotels = data;
-      });
+    this.hotelSubject.subscribe((data) => {
+      this.hotels = data;
+    });
   }
 }
