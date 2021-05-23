@@ -8,7 +8,7 @@
     <div class="filters-container">
       <form class="filter__cat filter--search">
         <input class="input--search" type="search" name="search-hotel" id="search-hotel" placeholder="Buscar hotel, ciudad o país"
-          [ngModel]="search" (ngModelChange)="searchFilter($event)">
+          #searchBox>
       </form>
       <form class="filter__cat filter--price">
         <input class="input--price" type="text" name="price-min" id="min" placeholder="$ Min" #minPrice>
@@ -24,7 +24,6 @@
             </span>
           </ng-template>
         </ngb-rating>
-        <span> o más</span>
       </form>
       <form class="filter__cat filter--stars">
         <ngb-rating [(rate)]="stars" (rateChange)="starsFilter($event)" [max]="5">
@@ -32,8 +31,8 @@
             <span class="star" [class.filled]="fill === 100">&#9733;</span>
           </ng-template>
         </ngb-rating>
-        <span> o más</span>
       </form>
+      <button class="btn btn-dark" (click)="filterClear(searchBox, minPrice, maxPrice)"> Limpiar Filtros</button>
     </div>
   </div>
 </nav>
