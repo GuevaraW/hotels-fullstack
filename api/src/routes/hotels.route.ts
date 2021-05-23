@@ -13,9 +13,26 @@ route
 	.get('/', (req: Request, res: Response, next: NextFunction) => {
 		const logger: Logger = Container.get('logger');
 		logger.debug('Calling GET to /hotels endpoint');
-		const buffer = JSON.parse(readJson(jsonPath));
 		try {
+			const buffer = JSON.parse(readJson(jsonPath));
 			res.json(buffer).status(200);
+		} catch (error) {
+			next(error);
+		}
+	})
+	.get('/f', (req: Request, res: Response, next: NextFunction) => {
+		const filters = req.query;
+		console.log(filters);
+
+		const logger: Logger = Container.get('logger');
+		logger.debug(`Calling GET to /hotels/filters ${filters} endpoint`);
+
+		try {
+			const buffer: ListHotels = JSON.parse(readJson(jsonPath));
+			const hotelServices = Container.get(HotelService);
+			const filtered = hotelServices.filter(filters, buffer);
+
+			res.json(filtered).status(200);
 		} catch (error) {
 			next(error);
 		}
@@ -113,6 +130,7 @@ route
 			next(error);
 		}
 	})
+
 	.get('/price/', (req: Request, res: Response, next: NextFunction) => {
 		const { min, max } = req.query;
 		const logger: Logger = Container.get('logger');
