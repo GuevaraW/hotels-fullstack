@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpParams,
+} from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -17,6 +21,14 @@ export class HotelService {
   getHotels(): Observable<ListHotels> {
     return this.http
       .get<ListHotels>(this.urlBase)
+      .pipe(catchError((error) => this.handleErrors(error)));
+  }
+
+  getHoltels(params: HttpParams): Observable<ListHotels> {
+    return this.http
+      .get<ListHotels>(this.urlBase + '/f', {
+        params: params,
+      })
       .pipe(catchError((error) => this.handleErrors(error)));
   }
 
