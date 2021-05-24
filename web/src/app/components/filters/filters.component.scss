@@ -31,11 +31,12 @@
 .filter--search {
   flex-basis: 55%;
   flex-grow: 10;
+  margin-right: 0.3rem;
 }
 
 .filter--rating,
 .filter--stars {
-  flex-basis: 80%;
+  flex-basis: 90%;
 }
 
 .input--search {
@@ -44,7 +45,6 @@
 
 .input--price {
   max-width: 5rem;
-  margin: 0.1rem;
 }
 
 .star,
