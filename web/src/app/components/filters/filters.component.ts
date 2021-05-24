@@ -68,6 +68,27 @@ export class FiltersComponent implements AfterViewInit {
       : this.params.delete('search');
   }
 
+  priceFilter(minValue: string, maxValue: string) {
+    let minPrice: number | string = parseInt(minValue),
+      maxPrice: number | string = parseInt(maxValue);
+    this.params = isNaN(minPrice)
+      ? this.params.delete('min')
+      : this.params.set('min', minValue);
+    this.params = isNaN(maxPrice)
+      ? this.params.delete('max')
+      : this.params.set('max', maxValue);
+    this.applyFilters();
+  }
+
+  rateFilter(rating: number) {
+    this.params = this.params.set('rating', rating.toString());
+    this.applyFilters();
+  }
+  starsFilter(stars: number) {
+    this.params = this.params.set('stars', stars.toString());
+    this.applyFilters();
+  }
+
   filterClear(
     search: HTMLInputElement,
     min: HTMLInputElement,
